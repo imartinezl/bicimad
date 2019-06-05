@@ -26,8 +26,11 @@ data <- jsonlite::read_json(file_name, )
 a <- readLines(file_name, n = 1000)
 b <- lapply(a, jsonlite::fromJSON)
 
+sapply(b, function(t){
+  t$unplug_hourTime
+})
 t <- b[[9]]
-e %>% lubridate::ydm_hms(tz = "UTC")
+t$unplug_hourTime %>% lubridate::ydm_hms(tz = "UTC")
 lubridate::time(t$unplug_hourTime) + lubridate::hour(10)
 t$track$features %>% 
   dplyr::rowwise() %>% 
