@@ -1,8 +1,11 @@
 library(dplyr)
 
-path <- "201906_Usage_Bicimad.json"
+path <- "data/201906_Usage_Bicimad.json"
 # d <- jsonlite::fromJSON(path, stream=T)
 # d <- jsonlite::stream_in(file(path, open="r", encoding="utf-8", raw=T), verbose=T, pagesize=10)
+
+
+# DATA IMPORT (FULL) ------------------------------------------------------
 
 #length(readLines(file(path)))
 d <- list()
@@ -46,10 +49,7 @@ data <- pbapply::pblapply(d, function(x){
 }, cl = 8) %>% 
   dplyr::bind_rows(.id = "id")
 
-
-
-
-# - -----------------------------------------------------------------------
+# DATA IMPORT + PREPROCESS ------------------------------------------------
 
 d <- list()
 cont <- 1
@@ -81,7 +81,7 @@ while(T){
   }
 }
 
-d %>% saveRDS('backup.rds')
+d %>% saveRDS('data/backup.rds')
 
 data <- d %>% 
   dplyr::bind_rows(.id = "id") %>% 
