@@ -4,7 +4,7 @@ class TripCount {
 
   ArrayList<Count> counts = new ArrayList<Count>();
   PVector pos = new PVector(100, height-100);
-  PVector scl = new PVector(1, -1);
+  PVector scl = new PVector(0.3, -0.5);
 
   TripCount(String file) {
     table = loadTable(file, "header");
@@ -50,7 +50,7 @@ class TripCount {
         top = true;
       }
 
-      if ((p.ts_num+2*60*60) % (24*60*60) == 0) {
+      if ((p.ts_num+2*60*60) % (*60*60) == 0) {
         text(p.ts_date, p.x, pos.y);
       }
     }
