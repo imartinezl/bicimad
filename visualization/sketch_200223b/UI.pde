@@ -1,14 +1,30 @@
 void display_date(float ts) {
-  PVector p = new PVector(50, 50);
-  // rectangle
-  //fill(255, 0, 0);
-  //noStroke();
-  //rect(p.x, p.y, 120, 11);
+  int x = 25;
+  int y = 20;
 
   // date
   fill(0);
-  textSize(10);
-  textAlign(LEFT, TOP);
+  textSize(20);
+  textAlign(RIGHT, TOP);
   String date = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(ts*1000L); 
-  text(date, p.x, p.y);
+  text(date, width-x, y);
+  
+  // title
+  // println(PFont.list());
+  PFont myFont = createFont("BebasNeue-Regular", 32);
+  textFont(myFont);
+  textSize(40);
+  textAlign(LEFT, TOP);
+  text("Madrid Biking Map", x, y);
+  
+  display_lines(10, 2);
+}
+
+void display_lines(int d, float sw){
+  stroke(0);
+  strokeWeight(sw);
+  line(d, 0, d, height);
+  line(width-d, 0, width-d, height);
+  line(0, d, width, d);
+  line(0, height-d, width, height-d);
 }

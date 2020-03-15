@@ -3,8 +3,8 @@ class TripCount {
   Table table;
 
   ArrayList<Count> counts = new ArrayList<Count>();
-  PVector pos = new PVector(100, height-100);
-  PVector scl = new PVector(0.3, -0.5);
+  PVector pos = new PVector(20, height-20);
+  PVector scl = new PVector(0.47, -0.3);
 
   TripCount(String file) {
     table = loadTable(file, "header");
@@ -27,9 +27,10 @@ class TripCount {
     // coordinates
     stroke(0);
     strokeWeight(0.1);
-    float h = 150, w = 500;
-    line(pos.x, pos.y, pos.x + w, pos.y);
-    line(pos.x, pos.y, pos.x, pos.y - h);
+    float h = 60, w = 800;
+    //line(pos.x, pos.y, pos.x + w, pos.y);
+    //line(pos.x, pos.y, pos.x, pos.y - h);
+    //line(pos.x, pos.y-h, pos.x+w, pos.y - h);
 
 
 
@@ -50,8 +51,13 @@ class TripCount {
         top = true;
       }
 
-      if ((p.ts_num+2*60*60) % (*60*60) == 0) {
-        text(p.ts_date, p.x, pos.y);
+      if ((p.ts_num+2*60*60) % (24*60*60) == 0) {
+        stroke(0);
+        strokeWeight(0.1);
+        line(p.x, pos.y, p.x, pos.y-h);
+        textSize(12);
+        textAlign(LEFT, TOP);
+        text(p.ts_date.substring(0,10), p.x+5, pos.y-h);
       }
     }
   }
