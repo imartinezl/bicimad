@@ -15,7 +15,7 @@ void display_date(float ts) {
   textAlign(LEFT, TOP);
   text("Madrid Biking Map", x, y);
   
-  display_lines(10, 2);
+  //display_lines(10, 2);
 }
 
 void display_lines(int d, float sw){

@@ -34,6 +34,7 @@ void draw() {
   track.update();
   t = t + t_step;
   //println(frameRate);
+  //saveFrame("figures/img-######.png");
 }
 
 
