@@ -82,6 +82,7 @@ while(T){
 }
 
 d %>% saveRDS('data/backup.rds')
+d <- readRDS('data/backup.rds')
 
 data <- d %>% 
   dplyr::bind_rows(.id = "id") %>% 
@@ -128,7 +129,7 @@ data %>%
   dplyr::group_by(id) %>% 
   dplyr::mutate(i = 1:n()) %>% 
   dplyr::ungroup() %>% 
-  dplyr::filter(id %in% seq(1,60000), i == 1) %>% 
+  dplyr::filter(id %in% seq(1,20000), i == 1) %>% 
   dplyr::mutate(ts_date = as.POSIXct(date, format="%Y-%m-%dT%H:%M:%S"),
                 ts_num = as.numeric(ts_date) + round(runif(n(),0,3600)),
                 ts_num = floor(ts_num/freq)*freq
@@ -138,9 +139,9 @@ data %>%
   dplyr::ungroup() %>% 
   dplyr::arrange(ts_num) %>% 
   dplyr::mutate(ts_date = as.POSIXct(ts_num, origin="1970-01-01")) %>% 
-  write.csv(file="trips_count.csv", row.names = F)
+  # write.csv(file="trips_count.csv", row.names = F)
   ggplot2::ggplot()+
-  ggplot2::geom_line(ggplot2::aes(x=new_date, y=count))
+  ggplot2::geom_line(ggplot2::aes(x=ts_date, y=count))
 
 
 
