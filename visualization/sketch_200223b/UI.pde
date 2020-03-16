@@ -3,16 +3,14 @@ void display_date(float ts) {
   int y = 20;
 
   // date
-  fill(0);
+  fill(ctext);
   textSize(20);
   textAlign(RIGHT, TOP);
   String date = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(ts*1000L); 
   text(date, width-x, y);
   
   // title
-  // println(PFont.list());
-  PFont myFont = createFont("BebasNeue-Regular", 32);
-  textFont(myFont);
+  fill(ctext);
   textSize(40);
   textAlign(LEFT, TOP);
   text("Madrid Biking Map", x, y);
@@ -21,7 +19,7 @@ void display_date(float ts) {
 }
 
 void display_lines(int d, float sw){
-  stroke(0);
+  stroke(cframe);
   strokeWeight(sw);
   line(d, 0, d, height);
   line(width-d, 0, width-d, height);

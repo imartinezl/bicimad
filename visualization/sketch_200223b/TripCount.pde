@@ -37,22 +37,22 @@ class TripCount {
     Count pre = counts.get(0);
     boolean top = false;
     for (Count p : counts) {
-      stroke(0);
-      strokeWeight(0.1);
-      //float s = 0.05;
+
+      if (p.ts_num > t && !top) {
+        //point(p.x, p.y);
+        stroke(cframe);
+        strokeWeight(1);
+        line(p.x, pos.y, p.x, pos.y-h); //pos.y-h+30);
+        top = true;
+      }
+      
+      stroke(cframe);
+      strokeWeight(0.2);
       line(pre.x, pre.y, p.x, p.y);
       pre = p;
 
-      stroke(255, 0, 0);
-      strokeWeight(2);
-      if (p.ts_num > t && !top) {
-        //point(p.x, p.y);
-        line(p.x, pos.y, p.x, p.y);
-        top = true;
-      }
-
       if ((p.ts_num+2*60*60) % (24*60*60) == 0) {
-        stroke(0);
+        stroke(cframe);
         strokeWeight(0.1);
         line(p.x, pos.y, p.x, pos.y-h);
         textSize(12);

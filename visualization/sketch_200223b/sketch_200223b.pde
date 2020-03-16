@@ -3,6 +3,10 @@ import java.util.Collections; //<>//
 Track track;
 TripCount tripcount;
 int t, t_step = 1*60;
+color ctext = #FFFFFF;
+color cline = #FFFFFF;
+color cframe = #FFFFFF;
+color cback = #000000;
 
 void setup() {
   size(800, 800);
@@ -13,11 +17,15 @@ void setup() {
   t = floor(track.lastTime()/t_step)*t_step;
   
   tripcount = new TripCount("trips_count.csv");
+  
+  // println(PFont.list());
+  PFont myFont = createFont("BebasNeue-Regular", 32);
+  textFont(myFont);
 }
 
 
 void draw() {
-  background(255);
+  background(cback);
   display_date(t);
   tripcount.display(t);
   while (track.lastTime() < t + t_step) {
@@ -25,7 +33,7 @@ void draw() {
   }
   track.update();
   t = t + t_step;
-  println(frameRate);
+  //println(frameRate);
 }
 
 
