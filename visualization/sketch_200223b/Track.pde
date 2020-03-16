@@ -26,8 +26,9 @@ class Track {
     float y = float(pieces[2]);
     String date = pieces[3];
     int t = int(pieces[4]);
-    x = x*width;
-    y = (1-y)*height;
+    float k = 1.6, dx = -45, dy = -60;
+    x = x*width*k - width/2*(k-1) + dx;
+    y = (1-y)*height*k-height/2*(k-1) + dy;
     points.add(new Point(id, x, y, date, t, chunk));
     if (points.size() > n_max) {
       points.remove(0);
@@ -45,7 +46,11 @@ class Track {
   }
 
   int lastTime() {
-    return points.get(points.size() - 1).t;
+    if (points.size() == 0) {
+      return 0;
+    } else {
+      return points.get(points.size() - 1).t;
+    }
   }
 
   void update() {
@@ -67,12 +72,12 @@ class Track {
   }
 
   void draw_line(Point p, Point q) {
-    strokeWeight(1);
-    stroke(255, 0, 0, opacity);
+    strokeWeight(1.5);
+    stroke(cline, opacity);
     if (p.id == q.id) {
       line(p.x, p.y, q.x, q.y);
-      opacity += 5;
-      opacity = min(opacity, 50);
+      opacity += 6;
+      opacity = min(opacity, 150);
     } else {
       opacity = 0;
     }
