@@ -1,1 +1,1 @@
-![](visualization/video_60fps.gif)
+![](visualization/video_30fps.gif)
