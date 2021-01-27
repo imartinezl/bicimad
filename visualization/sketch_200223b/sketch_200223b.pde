@@ -19,7 +19,7 @@ void setup() {
   tripcount = new TripCount("trips_count.csv");
   
   // println(PFont.list());
-  PFont myFont = createFont("BebasNeue-Regular", 32);
+  PFont myFont = createFont("Exo", 32);
   textFont(myFont);
 }
 
